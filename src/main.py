@@ -1,12 +1,31 @@
 """TaskTracker: gerenciador de tarefas em linha de comando (Bootcamp II - Fase 2)."""
 
+# Chaves em minúsculas para aceitar "alta", "ALTA" etc.; o valor é o nome que será armazenado.
+PRIORIDADES = {"alta": "Alta", "média": "Média", "media": "Média", "baixa": "Baixa"}
+
+
+def ler_titulo():
+    while True:
+        titulo = input("Título: ").strip()
+        if titulo:
+            return titulo
+        print("Erro: o título é obrigatório e não pode ficar vazio. Tente novamente.")
+
+
+def ler_prioridade():
+    while True:
+        prioridade = input("Prioridade (Alta, Média ou Baixa): ").strip().lower()
+        if prioridade in PRIORIDADES:
+            return PRIORIDADES[prioridade]
+        print("Erro: prioridade inválida. Digite Alta, Média ou Baixa.")
+
 
 def cadastrar_tarefa(tarefas):
     print("\n--- Cadastrar nova tarefa ---")
     tarefa = {
-        "titulo": input("Título: ").strip(),
+        "titulo": ler_titulo(),
         "descricao": input("Descrição (opcional): ").strip(),
-        "prioridade": input("Prioridade (Alta, Média ou Baixa): ").strip(),
+        "prioridade": ler_prioridade(),
         "data_limite": input("Data limite (DD/MM/AAAA): ").strip(),
         "status": "Pendente",
     }
