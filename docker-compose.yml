@@ -1,0 +1,7 @@
+services:
+  tasktracker-app:
+    build: .
+    image: tasktracker
+    # A CLI usa input(): mantém a entrada aberta e aloca um terminal virtual
+    stdin_open: true
+    tty: true
